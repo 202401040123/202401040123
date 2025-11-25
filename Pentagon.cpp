@@ -1,0 +1,32 @@
+#include <GL/glut.h>
+#include <cmath>
+
+void drawFilledPentagon() {
+    glBegin(GL_POLYGON); // Use GL_POLYGON to fill the polygon
+    glColor3f(0.0, 1.0, 0.0); // Set color to green (R, G, B)
+
+    for (int i = 0; i < 5; ++i) {
+        float angle = 2.0f * M_PI * i / 5.0f;
+        float x = 0.5 * cosf(angle); // Radius is set to 0.5
+        float y = 0.5 * sinf(angle);
+        glVertex2f(x, y);
+    }
+
+    glEnd();
+}
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    drawFilledPentagon(); // Draw a filled green pentagon
+
+    glFlush();
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutCreateWindow("Filled Pentagon");
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
